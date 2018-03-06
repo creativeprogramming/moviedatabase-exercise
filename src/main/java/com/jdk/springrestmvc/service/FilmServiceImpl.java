@@ -40,7 +40,7 @@ public class FilmServiceImpl implements FilmService{
         filmDao.deleteFilm(id);
     }
     
-    public Film findUserById (int id){
-        return filmDao.findUserById(id);
+    public Film findFilmById (int id){
+        return filmDao.findFilmById(id);
     }
 }

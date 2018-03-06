@@ -20,6 +20,6 @@ public interface FilmService {
     
     public void deleteFilm (int id);
     
-    public Film findFIlmById (int id);
+    public Film findFilmById (int id);
     
 }

@@ -49,7 +49,7 @@ public class CategoriaController {
 
     @GetMapping(value = "/")
     public List<Categoria> getAllcata() {
-        return categorie;
+        
     }
 
     @GetMapping(value = "/{id}")

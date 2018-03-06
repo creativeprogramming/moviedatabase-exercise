@@ -49,7 +49,7 @@ public class CategoriaController {
 
     @GetMapping(value = "/")
     public List<Categoria> getAllcata() {
-        // qua spazio vuoto
+        return getAllcata();
     }
 
     @GetMapping(value = "/{id}")

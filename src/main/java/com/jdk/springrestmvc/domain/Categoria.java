@@ -6,14 +6,36 @@
 package com.jdk.springrestmvc.domain;
 
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+
 
 /**
  *
  * @author jdk
  */
+
+@Entity
+@Table(name="category")
 public class Categoria {
+    
+    @Id
+    @GeneratedValue()
+    
+    @Column(name="id")
     private long id;
+    
+    @Column(name="genere")
     private String genere;
+    
+    @OneToMany(mappedBy = "Category")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Film> films;
     
     public Categoria(){}

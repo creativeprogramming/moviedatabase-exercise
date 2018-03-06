@@ -42,7 +42,7 @@ public class FilmImpl implements FilmDao {
     }
 
     @Override
-    public Film findUserById(int id) {
+    public Film findFilmById(int id) {
         return getSession().get(Film.class,id);
     }
 

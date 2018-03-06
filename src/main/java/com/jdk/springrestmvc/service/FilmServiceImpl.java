@@ -41,6 +41,6 @@ public class FilmServiceImpl implements FilmService{
     }
     
     public Film findFilmById (int id){
-        return filmDao.findUserById(id);
+        return filmDao.findFilmById(id);
     }
 }

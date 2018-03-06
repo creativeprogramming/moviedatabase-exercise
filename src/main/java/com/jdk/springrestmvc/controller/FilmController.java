@@ -38,9 +38,9 @@ public class FilmController {
         categoria[0] = new Categoria(1, "Fantascienza");
         categoria[1] = new Categoria(2, "Avventura");
         categoria[2] = new Categoria(3, "Supereoi");
-        films.add(new Film(1, "Mass effect", "storia di un comandante della Normandy SR-2", categoria[0]));
-        films.add(new Film(2, "Metal Gear Solid", "spionaggio internazionale", categoria[1]));
-        films.add(new Film(3, "Batman Begins", "le origini del cavaliere oscuro", categoria[2]));
+        films.add(new Film(1, "Mass effect", "storia di un comandante della Normandy SR-2"));
+        films.add(new Film(2, "Metal Gear Solid", "spionaggio internazionale"));
+        films.add(new Film(3, "Batman Begins", "le origini del cavaliere oscuro"));
 
     }
 
@@ -74,9 +74,9 @@ public class FilmController {
         if (result.hasErrors()) {
             return new ResponseEntity<>(result.getAllErrors(), HttpStatus.CONFLICT);
         } else {
-            Categoria categoria = film.getCategoria();
+            Categoria categoria = film.getCategory();
             film.setId(new Date().getTime());
-            film.setCategoria(categoria);
+            film.setCategory(categoria);
             this.films.add(film);  
             return new ResponseEntity(film, HttpStatus.OK);
         }
@@ -93,13 +93,13 @@ public class FilmController {
                     }
                 }
                 if(toModificare!=null){
-                    Categoria categoria = film.getCategoria();
+                    Categoria categoria = film.getCategory();
                     categoria.setId(categoria.getId());
                     categoria.setGenere(categoria.getGenere());
                     toModificare.setId(film.getId());
                     toModificare.setNome(film.getNome());
                     toModificare.setDescrizione(film.getDescrizione());
-                    toModificare.setCategoria(categoria);
+                    toModificare.setCategory(categoria);
                     return new ResponseEntity(film, HttpStatus.OK);
                 }else{
                     return new ResponseEntity(film, HttpStatus.NO_CONTENT);

@@ -34,16 +34,16 @@ public class Film {
     private String descrizione;
     
     @ManyToOne
-    private Categoria categoria;
+    private Categoria Category;
   
     
     public Film(){}
     
-    public Film(long id, String nome, String descrizione,Categoria categoria){
+    public Film(long id, String nome, String descrizione){
         this.id=id;
         this.nome=nome;
         this.descrizione=descrizione;
-        this.categoria=categoria;
+        
     }
 
     /**
@@ -88,19 +88,18 @@ public class Film {
         this.descrizione = descrizione;
     }
 
-    /**
-     * @return the categoria
-     */
-    public Categoria getCategoria() {
-        return categoria;
+    public Categoria getCategory() {
+        return Category;
+    }
+
+    public void setCategory(Categoria Category) {
+        this.Category = Category;
     }
 
     /**
-     * @param categoria the categoria to set
+     * @return the categoria
      */
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
+   
 
     
     

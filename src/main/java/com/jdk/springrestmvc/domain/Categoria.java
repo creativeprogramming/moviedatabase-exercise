@@ -36,7 +36,7 @@ public class Categoria {
     
     @OneToMany(mappedBy = "Category")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<Film> films;
+    private List<Film> film;
     
     public Categoria(){}
     

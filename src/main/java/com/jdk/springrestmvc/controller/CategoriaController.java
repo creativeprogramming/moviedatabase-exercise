@@ -43,11 +43,7 @@ public class CategoriaController {
     }
 
     public void cataFilms() {
-        categorie = new ArrayList<Categoria>();
-        
-        categorie.add(new Categoria(1, "Fantascienza"));
-        categorie.add(new Categoria(2, "Commedia"));
-        categorie.add(new Categoria(3, "Supereroi"));
+       
 
     }
 

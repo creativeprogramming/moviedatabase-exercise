@@ -7,6 +7,10 @@ package com.jdk.springrestmvc.dao;
 
 import com.jdk.springrestmvc.domain.Film;
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,24 +20,37 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class FilmImpl implements FilmDao {
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     public List<Film> getListFilm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Criteria criteria = getSession().createCriteria(Film.class);
+        return (List<Film>) criteria.list();
     }
 
     @Override
     public void saveOrUpdate(Film film) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getSession().saveOrUpdate(film);
     }
 
     @Override
     public void deleteFilm(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Film film= getSession().get(Film.class, id);
+        getSession().delete(film);
+
     }
 
     @Override
     public Film findUserById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getSession().get(Film.class,id);
     }
-    
+
+    /**
+     * @return the sessionFactory
+     */
+    protected Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
 }

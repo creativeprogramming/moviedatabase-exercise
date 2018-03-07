@@ -27,25 +27,28 @@ public class FilmImpl implements FilmDao {
 
     @Override
     public List<Film> getListFilm() {
-       return sessionFactory.getCurrentSession().createQuery("from Film").list();    }
+        return sessionFactory.getCurrentSession().createQuery("from Film").list();
+    }
 
     @Override
     public void saveOrUpdate(Film film) {
-     sessionFactory.getCurrentSession().save(film);
+        sessionFactory.getCurrentSession().save(film);
     }
 
     @Override
-    public void deleteFilm(long id) {
-        Film film= (Film) getSession().get(Film.class, id);
-        if(film != null){
-             sessionFactory.getCurrentSession().delete(id);
-        }
-
+    public void deleteFilm(int id) {
+//        Film film= (Film) getSession().get(Film.class, id);
+//        if(film != null){
+//             sessionFactory.getCurrentSession().delete(id);
+        Film film = new Film();
+        film.setId(id);
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(film);
     }
 
     @Override
-    public Film findFilmById(long id) {
-           Film film = (Film) sessionFactory
+    public Film findFilmById(int id) {
+        Film film = (Film) sessionFactory
                 .getCurrentSession().get(Film.class, id);
         return film;
     }

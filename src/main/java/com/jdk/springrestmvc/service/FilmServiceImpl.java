@@ -20,10 +20,11 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class FilmServiceImpl implements FilmService{
     
+    @Autowired
     FilmDao filmDao;
 
     
-    @Autowired
+   
     public void setFilmDao(FilmDao filmDao) {
         this.filmDao = filmDao;
     }

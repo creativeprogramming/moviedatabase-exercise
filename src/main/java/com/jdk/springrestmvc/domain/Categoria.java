@@ -29,7 +29,7 @@ public class Categoria {
     @GeneratedValue()
     
     @Column(name="id")
-    private long id;
+    private int id;
     
     @Column(name="genere")
     private String genere;
@@ -40,7 +40,7 @@ public class Categoria {
     
     public Categoria(){}
     
-    public Categoria(long id, String genere){
+    public Categoria(int id, String genere){
         this.id=id;
         this.genere=genere;
         
@@ -56,7 +56,7 @@ public class Categoria {
     /**
      * @param id the id to set
      */
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

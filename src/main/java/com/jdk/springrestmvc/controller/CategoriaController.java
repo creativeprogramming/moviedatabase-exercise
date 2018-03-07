@@ -54,7 +54,7 @@ public class CategoriaController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity getCategoria(@PathVariable long id) {
+    public ResponseEntity getCategoria(@PathVariable int id) {
         Categoria search = null;
 
         for (Categoria c : categorie) {
@@ -109,7 +109,7 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deletecategoria(@PathVariable Long id) {
+    public ResponseEntity deletecategoria(@PathVariable int id) {
 
         Categoria toDelete = null;
         for (Categoria e : categorie) {

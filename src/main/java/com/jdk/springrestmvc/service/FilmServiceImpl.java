@@ -37,11 +37,11 @@ public class FilmServiceImpl implements FilmService{
          filmDao.saveOrUpdate(film);
     }
     
-    public void deleteFilm (long id){
+    public void deleteFilm (int id){
         filmDao.deleteFilm(id);
     }
     
-    public Film findFilmById (long id){
+    public Film findFilmById (int id){
         return filmDao.findFilmById(id);
     }
 }

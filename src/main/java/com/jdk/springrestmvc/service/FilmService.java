@@ -18,8 +18,8 @@ public interface FilmService {
     
     public void saveOrUpdate (Film film);
     
-    public void deleteFilm (long id);
+    public void deleteFilm (int id);
     
-    public Film findFilmById (long id);
+    public Film findFilmById (int id);
     
 }

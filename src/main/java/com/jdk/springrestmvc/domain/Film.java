@@ -26,7 +26,7 @@ public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    private int id;
+    private long id;
     
      @Column(name="nome")
     private String nome;
@@ -39,7 +39,7 @@ public class Film {
     
     public Film(){}
     
-    public Film(int id, String nome, String descrizione){
+    public Film(long id, String nome, String descrizione){
         this.id=id;
         this.nome=nome;
         this.descrizione=descrizione;
@@ -56,7 +56,7 @@ public class Film {
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

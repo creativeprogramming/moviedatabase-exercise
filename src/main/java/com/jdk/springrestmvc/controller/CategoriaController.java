@@ -54,7 +54,7 @@ public class CategoriaController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity getCategoria(@PathVariable int id) {
+    public ResponseEntity getCategoria(@PathVariable long id) {
         Categoria search = null;
 
         for (Categoria c : categorie) {
@@ -79,7 +79,7 @@ public class CategoriaController {
         if (result.hasErrors()) {
             return new ResponseEntity<>(result.getAllErrors(), HttpStatus.CONFLICT);
         } else {
-            categoria.setId(new Date().getTime());
+            categoria.setId((int) new Date().getTime());
             this.categorie.add(categoria);
             return new ResponseEntity(categoria,HttpStatus.OK);
         }
@@ -99,7 +99,7 @@ public class CategoriaController {
         }
 
         if (toUpdate != null) {
-            toUpdate.setId(categoria.getId());
+            toUpdate.setId((int) categoria.getId());
             toUpdate.setGenere(categoria.getGenere());
             return new ResponseEntity(categoria, HttpStatus.OK);
         } else {
@@ -109,7 +109,7 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deletecategoria(@PathVariable int id) {
+    public ResponseEntity deletecategoria(@PathVariable long id) {
 
         Categoria toDelete = null;
         for (Categoria e : categorie) {

@@ -39,6 +39,13 @@ public class FilmController {
         return films;
     }
 
+    @GetMapping(value = "/{id}")
+    public @ResponseBody
+    Film getFilm(@PathVariable(value = "id") long id) {
+        Film film = service.findFilmById(id);
+        return film;
+    }
+
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     Film creaFilm(@RequestBody Film film) {
@@ -54,16 +61,14 @@ public class FilmController {
         film.setDescrizione(film.getDescrizione());
         film.setId(id);
         service.saveOrUpdate(film);
-        return film; 
+        return film;
     }
 
     @DeleteMapping(value = "/{id}")
-    public Film deleteFilm(@PathVariable(value = "id")
-    long id) {
+    public Film deleteFilm(@PathVariable(value = "id") long id) {
         Film film = service.findFilmById(id);
         service.deleteFilm(id);
         return film;
     }
-    
 
 }

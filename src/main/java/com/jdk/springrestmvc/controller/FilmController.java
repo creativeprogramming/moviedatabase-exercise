@@ -32,9 +32,9 @@ public class FilmController {
     @Autowired
     FilmService service;
 
-    @GetMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/")
     public @ResponseBody
-    List<Film> getListFilm(@RequestBody Film film) {
+    List<Film> getListFilm() {
         List<Film> films = service.getListFilm();
         return films;
     }
@@ -48,16 +48,12 @@ public class FilmController {
 
     @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Film updateFilm(@RequestBody Film film, @PathVariable("id") int id,
-            @PathVariable("descrizione") String descrizione,
-            @PathVariable("dnome") String nome) {
-        film.setDescrizione(descrizione);
-        film.setNome(nome);
+    Film updateFilm(@RequestBody Film film) {
         service.saveOrUpdate(film);
         return film;
     }
 
-    @DeleteMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{id}")
     public @ResponseBody
     Film deleteFilm(@PathVariable("id") int id) {
         Film film = service.findFilmById(id);

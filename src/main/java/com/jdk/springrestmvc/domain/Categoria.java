@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
@@ -34,7 +35,7 @@ public class Categoria {
     @Column(name="genere")
     private String genere;
     
-    @OneToMany(mappedBy = "Category")
+    @ManyToMany(mappedBy = "Category")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Film> film;
     

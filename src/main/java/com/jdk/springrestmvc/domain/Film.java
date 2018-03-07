@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -33,8 +34,8 @@ public class Film {
       @Column(name="descrizione")
     private String descrizione;
     
-    @ManyToOne
-    private Categoria Category;
+    @ManyToMany
+    private List<Categoria> Category;
   
     
     public Film(){}
@@ -88,13 +89,15 @@ public class Film {
         this.descrizione = descrizione;
     }
 
-    public Categoria getCategory() {
+    public List<Categoria> getCategory() {
         return Category;
     }
 
-    public void setCategory(Categoria Category) {
+    public void setCategory(List<Categoria> Category) {
         this.Category = Category;
     }
+
+   
 
     /**
      * @return the categoria

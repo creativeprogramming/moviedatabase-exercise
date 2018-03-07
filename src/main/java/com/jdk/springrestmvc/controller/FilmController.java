@@ -28,26 +28,41 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/films")
 @CrossOrigin
 public class FilmController {
-    
+
     @Autowired
     FilmService service;
 
-    public FilmController() {
-      
-        
+    @GetMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Film> getListFilm(@RequestBody Film film) {
+        List<Film> films = service.getListFilm();
+        return films;
     }
-
-  
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Film creaFilm(@RequestBody Film film) {
-            service.saveOrUpdate(film);
-            return film;
+    public @ResponseBody
+    Film creaFilm(@RequestBody Film film) {
+        service.saveOrUpdate(film);
+        return film;
     }
 
-    
-    
-    
-    
+    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Film updateFilm(@RequestBody Film film, @PathVariable("id") int id,
+            @PathVariable("descrizione") String descrizione,
+            @PathVariable("dnome") String nome) {
+        film.setDescrizione(descrizione);
+        film.setNome(nome);
+        service.saveOrUpdate(film);
+        return film;
+    }
+
+    @DeleteMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Film deleteFilm(@PathVariable("id") int id) {
+        Film film = service.findFilmById(id);
+        service.deleteFilm(id);
+        return film;
+    }
 
 }

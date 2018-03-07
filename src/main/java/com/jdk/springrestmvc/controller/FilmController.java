@@ -46,13 +46,15 @@ public class FilmController {
         return film;
     }
 
-    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Film updateFilm(@RequestBody Film film ) {
+    Film updateFilm(@RequestBody Film film, @PathVariable(value = "id") long id) {
+        //service.findFilmById(id);
         film.setNome(film.getNome());
         film.setDescrizione(film.getDescrizione());
+        film.setId(id);
         service.saveOrUpdate(film);
-        return film;
+        return film; 
     }
 
     @DeleteMapping(value = "/{id}")

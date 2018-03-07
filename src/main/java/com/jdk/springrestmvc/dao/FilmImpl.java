@@ -32,7 +32,7 @@ public class FilmImpl implements FilmDao {
 
     @Override
     public void saveOrUpdate(Film film) {
-        sessionFactory.getCurrentSession().save(film);
+        sessionFactory.getCurrentSession().saveOrUpdate(film);
     }
 
     @Override

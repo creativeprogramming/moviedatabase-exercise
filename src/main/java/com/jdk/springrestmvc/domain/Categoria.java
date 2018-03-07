@@ -23,19 +23,18 @@ import org.hibernate.annotations.Cascade;
  */
 
 @Entity
-@Table(name="category")
+@Table(name="Categoria")
 public class Categoria {
     
     @Id
-    @GeneratedValue()
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)  
     @Column(name="id")
     private long id;
     
     @Column(name="genere")
     private String genere;
     
-    @ManyToMany(mappedBy = "Category")
+    @ManyToMany(mappedBy = "categories")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Film> film;
     

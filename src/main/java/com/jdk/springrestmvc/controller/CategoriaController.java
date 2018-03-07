@@ -7,11 +7,13 @@ package com.jdk.springrestmvc.controller;
 
 import com.jdk.springrestmvc.domain.Categoria;
 import com.jdk.springrestmvc.domain.Film;
+import com.jdk.springrestmvc.service.CategoriaService;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +38,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class CategoriaController {
 
     List<Categoria> categorie;
-
-
+    @Autowired 
+    CategoriaService service;
+    
     public CategoriaController() {
         cataFilms();
     }
@@ -49,82 +52,28 @@ public class CategoriaController {
 
     @GetMapping(value = "/")
     public List<Categoria> getAllcata() {
-        return categorie;
-        
-    }
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity getCategoria(@PathVariable long id) {
-        Categoria search = null;
-
-        for (Categoria c : categorie) {
-            if (id == c.getId()) {
-                search = c;
-                break;
-            }
-        }
-
-        if (search != null) {
-            return new ResponseEntity(search, HttpStatus.OK);
-        } else {
-            return new ResponseEntity(search, HttpStatus.NO_CONTENT);
-        }
+        List <Categoria> categoria = service.getListCategoria();
+        return categoria;
     }
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity creaCate(@RequestBody Categoria categoria, @RequestBody Film film, BindingResult result) {
-        Logger.getLogger(CategoriaController.class.getName())
-                .log(Level.INFO, categoria.toString());
-
-        if (result.hasErrors()) {
-            return new ResponseEntity<>(result.getAllErrors(), HttpStatus.CONFLICT);
-        } else {
-            categoria.setId((int) new Date().getTime());
-            this.categorie.add(categoria);
-            return new ResponseEntity(categoria,HttpStatus.OK);
-        }
+    public ResponseEntity creaCate(@RequestBody Categoria categoria,  BindingResult result) {
+       service.saveOrUpdate(categoria);
+       return new ResponseEntity(categoria, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity updateCate(@RequestBody Categoria categoria, BindingResult result) {
-        Logger.getLogger(CategoriaController.class.getName())
-                .log(Level.SEVERE, categoria.toString());
-        Categoria toUpdate = null;
-
-        for (Categoria c : categorie) {
-            if (categoria.getId() == c.getId()) {
-                toUpdate = c;
-                break;
-            }
-        }
-
-        if (toUpdate != null) {
-            toUpdate.setId((int) categoria.getId());
-            toUpdate.setGenere(categoria.getGenere());
-            return new ResponseEntity(categoria, HttpStatus.OK);
-        } else {
-            return new ResponseEntity(categoria.getId(), HttpStatus.NO_CONTENT);
-        }
-
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateCate(@RequestBody Categoria categoria,BindingResult result, @PathVariable ("id") long id) {
+        //categoria = service.findCategoriaById(id);
+        categoria.setGenere(categoria.getGenere());
+        categoria.setId(id);
+        service.saveOrUpdate(categoria);
+        return new ResponseEntity(categoria, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deletecategoria(@PathVariable long id) {
-
-        Categoria toDelete = null;
-        for (Categoria e : categorie) {
-            if (e.getId() == id) {
-                toDelete = e;
-                break;
-            }
-        }
-
-        if (toDelete != null) {
-            categorie.remove(toDelete);
-            return new ResponseEntity(id, HttpStatus.OK);
-        } else {
-            return new ResponseEntity(id, HttpStatus.NO_CONTENT);
-        }
+    public ResponseEntity deletecategoria(@RequestBody Categoria categoria,@PathVariable long id) {
+       service.deleteCategoria(id);
+       return new ResponseEntity(categoria, HttpStatus.OK);
     }
-
 }

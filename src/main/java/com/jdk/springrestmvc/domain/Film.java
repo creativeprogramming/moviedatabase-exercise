@@ -33,9 +33,10 @@ public class Film {
     private String nome;
       @Column(name="descrizione")
     private String descrizione;
+
     
     @ManyToMany
-    private List<Categoria> Category;
+    private List<Categoria> categories;
   
     
     public Film(){}
@@ -44,6 +45,7 @@ public class Film {
         this.id=id;
         this.nome=nome;
         this.descrizione=descrizione;
+        
         
     }
 
@@ -89,13 +91,15 @@ public class Film {
         this.descrizione = descrizione;
     }
 
-    public List<Categoria> getCategory() {
-        return Category;
+    public void setCategories(List<Categoria> categories) {
+        this.categories = categories;
     }
 
-    public void setCategory(List<Categoria> Category) {
-        this.Category = Category;
+    public List<Categoria> getCategories() {
+        return categories;
     }
+
+ 
 
    
 

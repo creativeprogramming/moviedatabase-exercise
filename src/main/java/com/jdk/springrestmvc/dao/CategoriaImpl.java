@@ -26,7 +26,7 @@ public class CategoriaImpl  implements CategoriaDao{
 
     @Override
     public List<Categoria> getListCategoria() {
-        return sessionFactory.getCurrentSession().createQuery("from category ").list();
+        return sessionFactory.getCurrentSession().createQuery("from Categoria").list();
     }
 
     @Override

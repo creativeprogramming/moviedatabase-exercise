@@ -54,8 +54,8 @@ public class FilmController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public @ResponseBody
-    Film deleteFilm(@PathVariable("id") int id) {
+    public Film deleteFilm(@PathVariable(value = "id")
+    long id) {
         Film film = service.findFilmById(id);
         service.deleteFilm(id);
         return film;

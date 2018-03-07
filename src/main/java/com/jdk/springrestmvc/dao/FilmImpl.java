@@ -35,7 +35,7 @@ public class FilmImpl implements FilmDao {
     }
 
     @Override
-    public void deleteFilm(int id) {
+    public void deleteFilm(long id) {
         Film film= (Film) getSession().get(Film.class, id);
         if(film != null){
              sessionFactory.getCurrentSession().delete(id);
@@ -44,7 +44,7 @@ public class FilmImpl implements FilmDao {
     }
 
     @Override
-    public Film findFilmById(int id) {
+    public Film findFilmById(long id) {
            Film film = (Film) sessionFactory
                 .getCurrentSession().get(Film.class, id);
         return film;

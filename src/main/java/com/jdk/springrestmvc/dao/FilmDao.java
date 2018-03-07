@@ -18,8 +18,8 @@ public interface FilmDao {
     
     public void saveOrUpdate (Film film);
     
-    public void deleteFilm (int id);
+    public void deleteFilm (long id);
     
-    public Film findFilmById (int id);
+    public Film findFilmById (long id);
     
 }

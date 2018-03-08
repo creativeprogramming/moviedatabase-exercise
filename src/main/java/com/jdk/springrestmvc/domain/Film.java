@@ -31,9 +31,12 @@ public class Film {
     
      @Column(name="nome")
     private String nome;
+     
       @Column(name="descrizione")
     private String descrizione;
 
+      @Column(name="anno")
+      private int anno;
     
     @ManyToMany
     private List<Categoria> categories;
@@ -47,6 +50,14 @@ public class Film {
         this.descrizione=descrizione;
         
         
+    }
+
+    public int getAnno() {
+        return anno;
+    }
+
+    public void setAnno(int anno) {
+        this.anno = anno;
     }
 
     /**

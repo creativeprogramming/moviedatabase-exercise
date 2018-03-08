@@ -37,43 +37,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 @CrossOrigin
 public class CategoriaController {
 
-    List<Categoria> categorie;
-    @Autowired 
+    @Autowired
     CategoriaService service;
-    
-    public CategoriaController() {
-        cataFilms();
-    }
-
-    public void cataFilms() {
-       
-
-    }
 
     @GetMapping(value = "/")
     public List<Categoria> getAllcata() {
-        List <Categoria> categoria = service.getListCategoria();
+        List<Categoria> categoria = service.getListCategoria();
         return categoria;
     }
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity creaCate(@RequestBody Categoria categoria,  BindingResult result) {
-       service.saveOrUpdate(categoria);
-       return new ResponseEntity(categoria, HttpStatus.CREATED);
+    public ResponseEntity creaCate(@RequestBody Categoria categoria, BindingResult result) {
+        service.saveOrUpdate(categoria);
+        return new ResponseEntity(categoria, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity updateCate(@RequestBody Categoria categoria,BindingResult result, @PathVariable ("id") long id) {
+    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateCate(@RequestBody Categoria categoria) {
         //categoria = service.findCategoriaById(id);
-        categoria.setGenere(categoria.getGenere());
-        categoria.setId(id);
+      
         service.saveOrUpdate(categoria);
         return new ResponseEntity(categoria, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deletecategoria(@RequestBody Categoria categoria,@PathVariable long id) {
-       service.deleteCategoria(id);
-       return new ResponseEntity(categoria, HttpStatus.OK);
+    public ResponseEntity deletecategoria(@RequestBody Categoria categoria, @PathVariable long id) {
+        service.deleteCategoria(id);
+        return new ResponseEntity(categoria, HttpStatus.OK);
     }
 }
